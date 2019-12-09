@@ -1,0 +1,6 @@
+version: '3.7'
+
+services:
+  packer:
+    image: docker.pkg.github.com/williamjacksn/docker-packer/packer
+    build: .
