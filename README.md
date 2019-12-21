@@ -16,7 +16,7 @@ That&#x02bc;s right, forget about JSON and write your Packer templates with YAML
 Here is an example of how to run `packer` from this image:
 
 ```sh
-/path/to/packer/templates> docker container run --rm -it docker.pkg.github.com/williamjacksn/docker-packer/packer:1.4.5 --help
+/path/to/packer/templates> docker container run --rm -it docker.pkg.github.com/williamjacksn/docker-packer/packer:1.5.1 --help
 Usage: packer [--version] [--help] <command> [<args>]
 
 Available commands are:
@@ -36,7 +36,7 @@ version: '3.7'
 
 services:
   packer:
-    image: docker.pkg.github.com/williamjacksn/docker-packer/packer:1.4.5
+    image: docker.pkg.github.com/williamjacksn/docker-packer/packer:1.5.1
     volumes:
     - /path/to/packer/templates:/workdir
     working_dir: /workdir

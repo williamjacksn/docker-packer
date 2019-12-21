@@ -1,6 +1,6 @@
 FROM python:3.8.0-alpine3.10
 
-ARG PACKER_VERSION="1.5.0"
+ARG PACKER_VERSION="1.5.1"
 
 RUN /usr/local/bin/pip install --no-cache-dir "ruamel.yaml==0.16.5" \
  && /usr/bin/wget "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip" \
