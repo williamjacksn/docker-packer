@@ -9,14 +9,14 @@ template files.
 
 [b]: https://hub.docker.com/r/hashicorp/packer
 
-That&#x02bc;s right, forget about JSON and write your Packer templates with YAML instead.
+That&#x02bc;s right, forget about JSON and HCL and write your Packer templates with YAML instead.
 
 ## Getting started
 
 Here is an example of how to run `packer` from this image:
 
 ```sh
-/path/to/packer/templates> docker container run --rm -it docker.pkg.github.com/williamjacksn/docker-packer/packer:1.5.1 --help
+/path/to/packer/templates> docker container run --rm -it docker.pkg.github.com/williamjacksn/docker-packer/packer:1.5.2 --help
 Usage: packer [--version] [--help] <command> [<args>]
 
 Available commands are:
@@ -36,7 +36,7 @@ version: '3.7'
 
 services:
   packer:
-    image: docker.pkg.github.com/williamjacksn/docker-packer/packer:1.5.1
+    image: docker.pkg.github.com/williamjacksn/docker-packer/packer:1.5.2
     volumes:
     - /path/to/packer/templates:/workdir
     working_dir: /workdir
@@ -81,9 +81,9 @@ JSON and YAML.
 ### Convert a JSON template to YAML
 
 ```sh
-/path/to/packer/templates> docker-compose run packer to_yaml example.json > example.yaml
+/path/to/packer/templates> docker-compose run packer to_yaml example.pkr.json > example.pkr.yaml
 
-/path/to/packer/templates> cat example.yaml
+/path/to/packer/templates> cat example.pkr.yaml
 builders:
 - access_key: '{{user `aws_access_key`}}'
   ami_name: packer-example {{timestamp}}
@@ -108,7 +108,7 @@ variables:
 ### Convert a YAML template back to JSON
 
 ```sh
-/path/to/packer/templates> docker-compose run packer to_json example.yaml
+/path/to/packer/templates> docker-compose run packer to_json example.pkr.yaml
 {
   "builders": [
     {
@@ -146,7 +146,7 @@ With your template file in YAML format, all the usual `packer` commands work as 
 ### `inspect`
 
 ```sh
-/path/to/packer/templates> docker-compose run packer inspect example.yaml
+/path/to/packer/templates> docker-compose run packer inspect example.pkr.yaml
 Optional variables and their defaults:
 
   aws_access_key =
@@ -168,7 +168,7 @@ and therefore only show in their raw form here.
 ### `validate`
 
 ```sh
-/path/to/packer/templates> docker-compose run packer validate example.yaml
+/path/to/packer/templates> docker-compose run packer validate example.pkr.yaml
 Template validated successfully.
 ```
 
@@ -178,7 +178,7 @@ Template validated successfully.
 /path/to/packer/templates> docker-compose run packer build \
     -var 'aws_access_key=YOUR ACCESS KEY' \
     -var `aws_secret_key=YOUR SECRET KEY' \
-    example.yaml
+    example.pkr.yaml
 amazon-ebs output will be in this color.
 
 ==> amazon-ebs: Prevalidating AMI Name: packer-example 1575909162
