@@ -1,6 +1,6 @@
 FROM python:3.8.3-alpine3.12
 
-ARG PACKER_VERSION="1.5.6"
+ARG PACKER_VERSION="1.6.0"
 
 RUN /usr/local/bin/pip install --no-cache-dir "ruamel.yaml==0.16.10"
 

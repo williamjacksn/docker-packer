@@ -16,7 +16,7 @@ That&#x02bc;s right, forget about JSON and HCL and write your Packer templates w
 Here is an example of how to run `packer` from this image:
 
 ```sh
-/path/to/packer/templates> docker container run --rm -it docker.pkg.github.com/williamjacksn/docker-packer/packer:1.5.6 --help
+/path/to/packer/templates> docker container run --rm -it docker.pkg.github.com/williamjacksn/docker-packer/packer:1.6.0 --help
 Usage: packer [--version] [--help] <command> [<args>]
 
 Available commands are:
@@ -36,7 +36,7 @@ version: '3.7'
 
 services:
   packer:
-    image: docker.pkg.github.com/williamjacksn/docker-packer/packer:1.5.6
+    image: docker.pkg.github.com/williamjacksn/docker-packer/packer:1.6.0
     volumes:
     - /path/to/packer/templates:/workdir
     working_dir: /workdir
@@ -44,7 +44,7 @@ services:
 
 and the following example template file from [the Packer Getting Started guide][c]:
 
-[c]: https://www.packer.io/intro/getting-started/build-image.html#the-template
+[c]: https://www.packer.io/intro/getting-started/build-image/#the-template
 
 ```json
 {
@@ -52,24 +52,26 @@ and the following example template file from [the Packer Getting Started guide][
     "aws_access_key": "",
     "aws_secret_key": ""
   },
-  "builders": [{
-    "type": "amazon-ebs",
-    "access_key": "{{user `aws_access_key`}}",
-    "secret_key": "{{user `aws_secret_key`}}",
-    "region": "us-east-1",
-    "source_ami_filter": {
-      "filters": {
-        "virtualization-type": "hvm",
-        "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
-        "root-device-type": "ebs"
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "access_key": "{{user `aws_access_key`}}",
+      "secret_key": "{{user `aws_secret_key`}}",
+      "region": "us-east-1",
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
+          "root-device-type": "ebs"
+        },
+        "owners": ["099720109477"],
+        "most_recent": true
       },
-      "owners": ["099720109477"],
-      "most_recent": true
-    },
-    "instance_type": "t2.micro",
-    "ssh_username": "ubuntu",
-    "ami_name": "packer-example {{timestamp}}"
-  }]
+      "instance_type": "t2.micro",
+      "ssh_username": "ubuntu",
+      "ami_name": "packer-example {{timestamp}}"
+    }
+  ]
 }
 ```
 
