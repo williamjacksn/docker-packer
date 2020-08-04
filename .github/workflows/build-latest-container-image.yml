@@ -16,7 +16,7 @@ jobs:
       run: docker login --password "${{ github.token }}" --username "${{ github.actor }}" docker.pkg.github.com
     - name: Set the container image name
       id: set-image-name
-      run: echo ::set-output name=image-name::docker.pkg.github.com/${{ github.repostory }}/packer:latest
+      run: echo ::set-output name=image-name::docker.pkg.github.com/${{ github.repository }}/packer:latest
     - name: Build the container image
       run: docker build --file Dockerfile --tag ${{ steps.set-image-name.outputs.image-name }} .
     - name: Push the image to the registry
