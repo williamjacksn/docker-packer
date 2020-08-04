@@ -16,7 +16,7 @@ That&#x02bc;s right, forget about JSON and HCL and write your Packer templates w
 Here is an example of how to run `packer` from this image:
 
 ```sh
-/path/to/packer/templates> docker container run --rm -it docker.pkg.github.com/williamjacksn/docker-packer/packer:1.6.0 --help
+/path/to/packer/templates> docker container run --rm -it docker.pkg.github.com/williamjacksn/docker-packer/packer:1.6.1 --help
 Usage: packer [--version] [--help] <command> [<args>]
 
 Available commands are:
@@ -32,13 +32,13 @@ For convenience, the rest of the commands in this introduction will be run using
 Compose file:
 
 ```yaml
-version: '3.7'
+version: '3.8'
 
 services:
   packer:
-    image: docker.pkg.github.com/williamjacksn/docker-packer/packer:1.6.0
+    image: docker.pkg.github.com/williamjacksn/docker-packer/packer:1.6.1
     volumes:
-    - /path/to/packer/templates:/workdir
+      - /path/to/packer/templates:/workdir
     working_dir: /workdir
 ```
 
