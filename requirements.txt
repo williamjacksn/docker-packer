@@ -1,0 +1,3 @@
+--extra-index-url https://alpine-wheels.github.io/index
+
+ruamel.yaml==0.16.10
