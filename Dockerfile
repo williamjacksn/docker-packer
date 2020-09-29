@@ -1,6 +1,6 @@
 FROM python:3.8.6-alpine3.12
 
-ARG PACKER_VERSION="1.6.2"
+ARG PACKER_VERSION="1.6.3"
 
 RUN /usr/local/bin/pip install --no-cache-dir --extra-index-url https://alpine-wheels.github.io/index "ruamel.yaml==0.16.10"
 
