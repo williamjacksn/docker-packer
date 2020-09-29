@@ -2,7 +2,8 @@ FROM python:3.8.6-alpine3.12
 
 ARG PACKER_VERSION="1.6.3"
 
-RUN /usr/local/bin/pip install --no-cache-dir --extra-index-url https://alpine-wheels.github.io/index "ruamel.yaml==0.16.10"
+COPY requirements.txt /requirements.txt
+RUN /usr/local/bin/pip install --no-cache-dir --requirement /requirements.txt
 
 RUN /usr/bin/wget "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip" \
  && /usr/bin/unzip "/packer_${PACKER_VERSION}_linux_amd64.zip" -d /usr/local/bin \
