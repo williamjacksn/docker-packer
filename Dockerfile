@@ -1,6 +1,6 @@
 FROM python:3.9.1-alpine3.12
 
-ARG PACKER_VERSION="1.6.5"
+ARG PACKER_VERSION="1.6.6"
 
 COPY requirements.txt /requirements.txt
 RUN /usr/local/bin/pip install --no-cache-dir --requirement /requirements.txt
