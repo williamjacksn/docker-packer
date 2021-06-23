@@ -16,7 +16,7 @@ That&#x02bc;s right, forget about JSON and HCL and write your Packer templates w
 Here is an example of how to run `packer` from this image:
 
 ```sh
-/path/to/packer/templates> docker container run --rm -it ghcr.io/williamjacksn/packer:1.7.2 --help
+/path/to/packer/templates> docker container run --rm -it ghcr.io/williamjacksn/packer --help
 Usage: packer [--version] [--help] <command> [<args>]
 
 Available commands are:
@@ -36,7 +36,7 @@ version: '3.8'
 
 services:
   packer:
-    image: ghcr.io/williamjacksn/packer:1.7.2
+    image: ghcr.io/williamjacksn/packer
     volumes:
       - /path/to/packer/templates:/workdir
     working_dir: /workdir
