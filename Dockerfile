@@ -1,4 +1,4 @@
-FROM python:3.9.5-alpine3.13
+FROM python:3.9.6-alpine3.13
 
 ARG PACKER_VERSION="1.7.3"
 
