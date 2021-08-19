@@ -5,16 +5,23 @@ FROM python:3.9.6-alpine3.14
 
 ARG PACKER_VERSION="1.7.4"
 
-COPY requirements.txt /requirements.txt
-RUN /usr/local/bin/pip install --no-cache-dir --requirement /requirements.txt
+RUN /usr/sbin/adduser -g python -D python
+
+USER python
+RUN /usr/local/bin/python -m venv /home/python/venv
+
+COPY --chown=python:python requirements.txt /home/python/docker-packer/requirements.txt
+RUN /home/python/venv/bin/pip install --no-cache-dir --requirement /home/python/docker-packer/requirements.txt
+
+WORKDIR /home/python/docker-packer
 
 RUN /usr/bin/wget "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip" \
- && /usr/bin/unzip "/packer_${PACKER_VERSION}_linux_amd64.zip" -d /usr/local/bin \
- && /bin/rm "/packer_${PACKER_VERSION}_linux_amd64.zip"
+ && /usr/bin/unzip "/home/python/docker-packer/packer_${PACKER_VERSION}_linux_amd64.zip" -d /home/python/docker-packer \
+ && /bin/rm "/home/python/docker-packer/packer_${PACKER_VERSION}_linux_amd64.zip"
 
-COPY packer.py /packer.py
-
-ENTRYPOINT ["/usr/local/bin/python", "/packer.py"]
+COPY --chown=python:python packer.py /home/python/docker-packer/packer.py
+ENTRYPOINT ["/home/python/venv/bin/python", "/home/python/docker-packer/packer.py"]
 
 LABEL org.opencontainers.image.authors="William Jackson <william@subtlecoolness.com>" \
+      org.opencontainers.image.source="https://github.com/williamjacksn/docker-packer" \
       org.opencontainers.image.version="${PACKER_VERSION}"
