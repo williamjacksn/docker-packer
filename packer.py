@@ -33,7 +33,7 @@ def main():
         template = read_yaml_file(source)
         json.dump(template, sys.stdout, indent=2)
     else:
-        packer_cmd[0] = '/usr/local/bin/packer'
+        packer_cmd[0] = '/home/python/docker-packer/packer'
         for i, arg in enumerate(packer_cmd):
             arg_lower = arg.lower()
             if arg_lower.endswith('.yml') or arg_lower.endswith('.yaml'):
