@@ -1,7 +1,7 @@
 FROM hashicorp/packer:1.7.4
 # The preceding line is only for Dependabot
 
-FROM python:3.9.6-alpine3.14
+FROM python:3.9.7-alpine3.14
 
 ARG PACKER_VERSION="1.7.4"
 
