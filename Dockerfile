@@ -1,4 +1,4 @@
-FROM hashicorp/packer:1.7.10
+FROM hashicorp/packer:1.8.0
 # The preceding line is only for Dependabot
 
 FROM python:3.10.2-alpine3.15
