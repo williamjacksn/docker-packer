@@ -1,9 +1,9 @@
-FROM hashicorp/packer:1.8.1
+FROM hashicorp/packer:1.8.2
 # The preceding line is only for Dependabot
 
 FROM python:3.10.5-alpine3.16
 
-ARG PACKER_VERSION="1.8.1"
+ARG PACKER_VERSION="1.8.2"
 
 RUN /usr/sbin/adduser -g python -D python
 
