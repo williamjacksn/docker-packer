@@ -3,7 +3,7 @@ FROM hashicorp/packer:1.8.4
 
 FROM python:3.11.0-alpine3.16
 
-ARG PACKER_VERSION="1.8.3"
+ARG PACKER_VERSION="1.8.4"
 
 RUN /usr/sbin/adduser -g python -D python
 
